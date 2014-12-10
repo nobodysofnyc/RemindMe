@@ -78,7 +78,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="submitTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="peg-9u-jUW"/>
+                                    <action selector="submitTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RZL-eJ-Rba"/>
                                 </connections>
                             </button>
                         </subviews>

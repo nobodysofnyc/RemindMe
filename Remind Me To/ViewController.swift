@@ -35,10 +35,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
        return manager
     }()
     
-    override func viewDidLoad() {
-        searchDisplayController?.searchResultsTableView.registerNib(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: CellIdentifier)
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -49,7 +45,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     }
     
     @IBAction func submitTapped(sender: AnyObject) {
-        performSearch()
     }
     
     private func performSearch() {
