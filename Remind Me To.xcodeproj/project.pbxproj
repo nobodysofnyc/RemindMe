@@ -13,6 +13,11 @@
 		27CA101D1A37D7030016ADD8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CA101C1A37D7030016ADD8 /* Images.xcassets */; };
 		27CA10201A37D7030016ADD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CA101E1A37D7030016ADD8 /* LaunchScreen.xib */; };
 		27CA102C1A37D7030016ADD8 /* Remind_Me_ToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA102B1A37D7030016ADD8 /* Remind_Me_ToTests.swift */; };
+		27D79BA11A37EDB1009527A8 /* FoursquareSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D79BA01A37EDB1009527A8 /* FoursquareSearchHelper.swift */; };
+		27E8C4191A37FA4F004A2309 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8C4181A37FA4F004A2309 /* Venue.swift */; };
+		27E8C41B1A37FA6B004A2309 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8C41A1A37FA6B004A2309 /* Location.swift */; };
+		27E8C41D1A38013D004A2309 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E8C41C1A38013D004A2309 /* SearchCell.xib */; };
+		27E8C41F1A3802F7004A2309 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8C41E1A3802F7004A2309 /* SearchCell.swift */; };
 		C98667E19D549D9D1C8C3B7C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2EA20AB1559BA832FA5A9C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +45,11 @@
 		27CA102A1A37D7030016ADD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27CA102B1A37D7030016ADD8 /* Remind_Me_ToTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remind_Me_ToTests.swift; sourceTree = "<group>"; };
 		27CA10361A37DCDE0016ADD8 /* Remind Me To-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Remind Me To-Bridging-Header.h"; sourceTree = "<group>"; };
+		27D79BA01A37EDB1009527A8 /* FoursquareSearchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareSearchHelper.swift; sourceTree = "<group>"; };
+		27E8C4181A37FA4F004A2309 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		27E8C41A1A37FA6B004A2309 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		27E8C41C1A38013D004A2309 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		27E8C41E1A3802F7004A2309 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		6C2EA20AB1559BA832FA5A9C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,9 +97,14 @@
 			children = (
 				27CA10151A37D7030016ADD8 /* AppDelegate.swift */,
 				27CA10171A37D7030016ADD8 /* ViewController.swift */,
+				27D79BA01A37EDB1009527A8 /* FoursquareSearchHelper.swift */,
+				27E8C4181A37FA4F004A2309 /* Venue.swift */,
+				27E8C41A1A37FA6B004A2309 /* Location.swift */,
 				27CA10191A37D7030016ADD8 /* Main.storyboard */,
 				27CA101C1A37D7030016ADD8 /* Images.xcassets */,
 				27CA101E1A37D7030016ADD8 /* LaunchScreen.xib */,
+				27E8C41C1A38013D004A2309 /* SearchCell.xib */,
+				27E8C41E1A3802F7004A2309 /* SearchCell.swift */,
 				27CA10131A37D7030016ADD8 /* Supporting Files */,
 				27CA10361A37DCDE0016ADD8 /* Remind Me To-Bridging-Header.h */,
 			);
@@ -221,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CA101B1A37D7030016ADD8 /* Main.storyboard in Resources */,
+				27E8C41D1A38013D004A2309 /* SearchCell.xib in Resources */,
 				27CA10201A37D7030016ADD8 /* LaunchScreen.xib in Resources */,
 				27CA101D1A37D7030016ADD8 /* Images.xcassets in Resources */,
 			);
@@ -274,6 +290,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CA10181A37D7030016ADD8 /* ViewController.swift in Sources */,
+				27E8C41F1A3802F7004A2309 /* SearchCell.swift in Sources */,
+				27E8C4191A37FA4F004A2309 /* Venue.swift in Sources */,
+				27E8C41B1A37FA6B004A2309 /* Location.swift in Sources */,
+				27D79BA11A37EDB1009527A8 /* FoursquareSearchHelper.swift in Sources */,
 				27CA10161A37D7030016ADD8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

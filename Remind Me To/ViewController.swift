@@ -7,65 +7,91 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var textField: UITextField!
     
-    let clientId = "5E5S0DUICZZQOHV5TILO0SDY1M0EQYBPYQUE22L1SFR35F0W"
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    let clientSecret = "LZXI4QOWMTSNRHCOV4OD3BXBRSS5PQME2NB0BPOMTMECC1JX"
+    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
+    
+    let CellIdentifier = "CellIdentifier"
+    
+    var location = CLLocation()
+    
+    var search: NSURLSessionDataTask?
+    
+    var places: [JSON]?
+    
+    lazy var locationManager: CLLocationManager = {
+        var manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = 0
+       return manager
+    }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        searchDisplayController?.searchResultsTableView.registerNib(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: CellIdentifier)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if locationManager.respondsToSelector("requestWhenInUseAuthorization") {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.startUpdatingLocation()
     }
-
+    
     @IBAction func submitTapped(sender: AnyObject) {
         performSearch()
     }
     
     private func performSearch() {
-        AFHTTPSessionManager().GET(apiURLString(), parameters: nil, success: { (task: NSURLSessionDataTask!, response: AnyObject!) -> Void in
-            
-            }) { (task: NSURLSessionDataTask!, error: NSError!) -> Void in
-                
-        }
-        //https://api.foursquare.com/v2/venues/search?ll=40.663198,-73.988149&query=e&amph&client_id=5E5S0DUICZZQOHV5TILO0SDY1M0EQYBPYQUE22L1SFR35F0W&client_secret=&v=20141210
-
-    }
-    
-    private func apiURLString() -> String {
-        return "\(apiBaseURLString())?ll=\(locationParams())&query=\(queryString())&client_id=\(clientId)&client_secret=\(clientSecret)&v=\(timestamp())"
-    }
-    
-    private func locationParams() -> String {
         
+        if let s = search {
+            s.cancel()
+        }
+        
+        search = FoursquareSearchHelper().performSearch(searchBar.text, location: location, successCallback: {(response: [JSON]?) -> Void in
+            if let resp = response {
+                self.places = resp
+                println(self.places?.count)
+            }
+        })
     }
     
-    private func queryString() -> String {
-        return textField.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+    
+    // MARK: <CLLocationManagerDelegate>
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        location = locations[0] as CLLocation
+    }
+
+    
+    // MARK: <UITextFieldDelegate>
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+//        performSearch()
+
+        return true
     }
     
-    private func apiBaseURLString() -> String {
-        return "https://api.foursquare.com/\(version())/venues/search"
-    }
-    
-    private func version() -> String {
-        return "v2"
-    }
-    
-    private func timestamp() -> String {
-        let components = NSCalendar.currentCalendar().components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
-        let year = components.year
-        let month = String(format: "%02d", components.month)
-        var day = String(format: "%02d", components.day)
-        return "\(year)\(month)\(day)"
+    func textViewDidChange(textView: UITextView) {
+        textView.layoutManager.ensureLayoutForTextContainer(textView.textContainer)
+        textView.layoutIfNeeded()
+        
+        let contentSize = textView.contentSize
+        println(contentSize.height)
+        
+        textViewHeightConstraint.constant = contentSize.height
+        textView.contentOffset = CGPoint(x: 0, y: 0)
+        textView.contentInset = UIEdgeInsetsZero
     }
 
 }
