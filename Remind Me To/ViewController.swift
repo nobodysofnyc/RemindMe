@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var textField: UITextField!
     
@@ -77,21 +77,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     // MARK: <UITextFieldDelegate>
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-//        performSearch()
-
+        resizeTextView(textView)
         return true
     }
     
     func textViewDidChange(textView: UITextView) {
-        textView.layoutManager.ensureLayoutForTextContainer(textView.textContainer)
-        textView.layoutIfNeeded()
-        
+        resizeTextView(textView)
+    }
+    
+    private func resizeTextView(textView: UITextView) {
         let contentSize = textView.contentSize
-        println(contentSize.height)
-        
-        textViewHeightConstraint.constant = contentSize.height
+        self.textViewHeightConstraint.constant = contentSize.height
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         textView.contentOffset = CGPoint(x: 0, y: 0)
-        textView.contentInset = UIEdgeInsetsZero
     }
 
 }
